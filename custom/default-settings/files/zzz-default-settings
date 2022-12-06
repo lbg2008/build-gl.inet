@@ -56,7 +56,7 @@ web_session_ttl: 720
 dns:
   bind_hosts:
   - 0.0.0.0
-  port: 11553
+  port: 5335
   statistics_interval: 1
   querylog_enabled: false
   querylog_file_enabled: false
