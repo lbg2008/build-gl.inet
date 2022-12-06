@@ -6,9 +6,7 @@ feeds:
     branch: master
 packages:
   - luci-app-ssr-plus
-  - luci-app-uhttpd
   - dnsmasq-full
-  - luci-app-commands
 
 
 
