@@ -26,49 +26,8 @@ uci set network.wan.username=""
 uci set network.wan.password=""
 uci commit network
 
-
-uci del uhttpd.main.listen_http
-uci del uhttpd.main.listen_https
-uci add_list uhttpd.main.listen_http=[::]:80
-uci add_list uhttpd.main.listen_http=0.0.0.0:80
-uci add_list uhttpd.main.listen_https=[::]:443
-uci add_list uhttpd.main.listen_https=0.0.0.0:443
-uci set uhttpd.main.rfc1918_filter=0
-uci commit uhttpd
-
 uci set dropbear.@dropbear[0].Port=22
 uci set dropbear.@dropbear[0].PasswordAuth=on
 uci commit dropbear
-
-
-echo "[common]
-bind_port = 17000
-vhost_http_port = 10443
-vhost_https_port = 10080
-vhost_http_timeout = 60
-dashboard_port = 17001
-dashboard_user = root
-dashboard_pwd = 12345678
-log_level = error
-token = openwrt" > /var/etc/frps.ini
-
-echo "config init
-	option stdout '1'
-	option stderr '1'
-	option respawn '1'
-	option user 'root'
-	option group 'root'
-
-config conf 'common'
-	option bind_port '17000'
-	option vhost_http_port '10443'
-	option vhost_https_port '10080'
-	option vhost_http_timeout '60'
-	option dashboard_port '17001'
-	option dashboard_user 'root'
-	option dashboard_pwd '12345678'
-	option log_level 'error'
-	option token 'openwrt'" > /etc/config/frps
-
 
 exit 0
