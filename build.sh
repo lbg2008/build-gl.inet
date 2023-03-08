@@ -125,6 +125,7 @@ case $profile in
         if [[ $ui == true  ]]; then
             ./scripts/gen_config.py $profile glinet_depends_s200 glinet_nas custom
             git clone https://github.com/gl-inet/glinet4.x.git ~/glinet
+            cp -rf ~/glinet/pkg_config/gl_pkg_config_ath79_s200.mk ~/glinet/ath79/gl_pkg_config.mk
         else
             ./scripts/gen_config.py $profile openwrt_common glinet_nas luci custom
         fi
