@@ -3,6 +3,8 @@ CRTDIR=$(pwd)
 base=$1
 profile=$2
 ui=$3
+tag=$4
+tagm=$5
 echo $base
 if [ ! -e "$base" ]; then
     echo "Please enter base folder"
@@ -21,10 +23,23 @@ fi
 if [ ! -n "$ui" ]; then
     ui=true
 fi
+
+if [ ! -n "$tag" ]; then
+    tag=main
+fi
+
+if [ ! -n "$tagm" ]; then
+    tagm=main
+fi
+
+if [[ $ui == true ]]; then
+    git clone -b $tagm https://github.com/gl-inet/glinet4.x.git ~/glinet
+fi
+
 echo "Start..."
 
 #clone source tree 
-git clone https://github.com/gl-inet/gl-infra-builder.git $base/gl-infra-builder
+git clone -b $tag https://github.com/gl-inet/gl-infra-builder.git $base/gl-infra-builder
 cp -r custom/  $base/gl-infra-builder/feeds/custom/
 cp -r *.yml $base/gl-infra-builder/profiles
 cd $base/gl-infra-builder
@@ -71,7 +86,6 @@ case $profile in
         fi
         ln -s $base/gl-infra-builder/wlan-ap/openwrt ~/openwrt && cd ~/openwrt
         if [[ $ui == true  ]]; then 
-            git clone https://github.com/gl-inet/glinet4.x.git ~/glinet
             if [[ $profile == *ax1800* ]]; then
                 cp ~/glinet/pkg_config/gl_pkg_config_ax1800.mk  ~/glinet/ipq60xx/gl_pkg_config.mk
                 cp ~/glinet/pkg_config/glinet_depends_ax1800.yml  ./profiles/glinet_depends.yml
@@ -89,7 +103,6 @@ case $profile in
         python3 setup.py -c configs/config-21.02.2.yml
         ln -s $base/gl-infra-builder/openwrt-21.02/openwrt-21.02.2 ~/openwrt && cd ~/openwrt
         if [[ $ui == true  ]]; then
-            git clone https://github.com/gl-inet/glinet4.x.git ~/glinet
             cp ~/glinet/pkg_config/gl_pkg_config_a1300.mk  ~/glinet/ipq40xx/gl_pkg_config.mk
             cp ~/glinet/pkg_config/glinet_depends_a1300.yml  ./profiles/glinet_depends.yml
             ./scripts/gen_config.py glinet_depends custom
@@ -103,7 +116,6 @@ case $profile in
         python3 setup.py -c configs/config-mt798x-7.6.6.1.yml
         ln -s $base/gl-infra-builder/mt7981 ~/openwrt && cd ~/openwrt    
         if [[ $ui == true  ]]; then
-            git clone https://github.com/gl-inet/glinet4.x.git ~/glinet
             if [[ $profile == *mt3000* ]]; then
                 cp ~/glinet/pkg_config/gl_pkg_config_mt3000.mk  ~/glinet/mt7981/gl_pkg_config.mk
                 cp ~/glinet/pkg_config/glinet_depends_mt3000.yml  ./profiles/glinet_depends.yml
@@ -134,7 +146,6 @@ case $profile in
         python3 setup.py -c configs/config-21.02.2.yml
         ln -s $base/gl-infra-builder/openwrt-21.02/openwrt-21.02.2 ~/openwrt && cd ~/openwrt
         if [[ $ui == true  ]]; then
-            git clone https://github.com/gl-inet/glinet4.x.git ~/glinet
             cp -rf ~/glinet/pkg_config/gl_pkg_config_ath79_s200.mk ~/glinet/ath79/gl_pkg_config.mk
             cp -rf ~/glinet/pkg_config/gl_pkg_config_ath79_s200.yml ./profiles/
             ./scripts/gen_config.py $profile gl_pkg_config_ath79_s200 custom
