@@ -12,7 +12,6 @@ packages:
   - dnsmasq-full
 
 diffconfig: |
-  CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ChinaDNS_NG=n
   CONFIG_PACKAGE_wpad-basic=n
   CONFIG_PACKAGE_wpad=n
   CONFIG_PACKAGE_dnsmasq=n
