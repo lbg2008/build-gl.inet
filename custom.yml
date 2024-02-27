@@ -4,14 +4,14 @@ feeds:
   - name: helloworld
     uri: https://github.com/fw876/helloworld.git
     branch: master
+  - name: fancontrol
+    uri: https://github.com/lbg2008/fancontrol.git
+    branch: master
 packages:
   - luci-app-ssr-plus
   - dnsmasq-full
 
-
-
 diffconfig: |
-  CONFIG_PACKAGE_chinadns-ng=n
   CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ChinaDNS_NG=n
   CONFIG_PACKAGE_wpad-basic=n
   CONFIG_PACKAGE_wpad=n
@@ -20,3 +20,19 @@ diffconfig: |
   CONFIG_LUCI_LANG_zh_Hans=y
   CONFIG_BUSYBOX_CUSTOM=y
   CONFIG_BUSYBOX_CONFIG_FEATURE_FLOAT_SLEEP=y
+  CONFIG_PACKAGE_fancontrol=y
+  CONFIG_PACKAGE_luci-app-fancontrol=y
+  CONFIG_PACKAGE_luci-i18n-fancontrol-zh-cn=y
+  CONFIG_PACKAGE_luci=y
+  CONFIG_PACKAGE_luci-app-udpxy=y
+  CONFIG_PACKAGE_luci-compat=y
+  CONFIG_PACKAGE_luci-i18n-base-zh-cn=y
+  CONFIG_PACKAGE_luci-app-ssr-plus=y
+  # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_MosDNS is not set
+  # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Libev_Client is not set
+  CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Libev_Client=y
+  CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_NONE_Server=y
+  # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Client is not set
+  # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks_Rust_Server is not set
+  CONFIG_PACKAGE_simple-obfs-client=y
+  CONFIG_PACKAGE_xray-core=y
