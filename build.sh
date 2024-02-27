@@ -33,7 +33,7 @@ if [ ! -n "$tagm" ]; then
 fi
 
 if [[ $ui == true ]]; then
-    git clone -b $tagm https://github.com/gl-inet/glinet4.x.git ~/glinet
+    git clone -b $tagm https://github.com/lbg2008/glinet4.x.git ~/glinet
 fi
 
 echo "Start..."
